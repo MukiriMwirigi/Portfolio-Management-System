@@ -120,8 +120,9 @@ def sales():
     return render_template('admin/sales.html', all_sales=all_sales)
 
 
-
+"""
 if __name__ == '__main__':
     app.jinja_env.auto_reload = True
     app.config['TEMPLATES_AUTO_RELOAD'] = True
     app.run(debug=True)
+"""

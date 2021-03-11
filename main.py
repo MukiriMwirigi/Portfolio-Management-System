@@ -5,7 +5,7 @@ from configs.configurations import Development, Testing, Production
 
 
 app = Flask(__name__)
-app.config.from_object(Development)
+#app.config.from_object(Development)
 db = SQLAlchemy(app)
 
 # models
@@ -45,8 +45,10 @@ def utility_processor():
     def compute_revenue(inventoryID: int):
         inv = Inventory.get_inventory_byID(id=inventoryID)
         if inv is not None:
-            sale_revenue = list(map(lambda total_sales*sp))
-            return dict(compute_revenue=compute_revenue)
+            total_sales = list(map(lambda obj:revenue, inv.sales))
+            return (total_sales * sp)
+            
+    return dict(compute_revenue=compute_revenue)
 
 
 @app.route('/')

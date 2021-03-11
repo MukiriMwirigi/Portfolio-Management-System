@@ -1,0 +1,28 @@
+.nav-hover:hover{
+    border-bottom: 1px solid brown;
+}
+
+.title{
+    text-transform: uppercase;
+    text-decoration: dotted;
+    color: brown;
+}
+
+img{
+    width: 100%;
+    height: auto;
+}
+
+h1, h2{
+    line-height: 1.2;
+    margin: 10px 0;
+}
+
+.grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}

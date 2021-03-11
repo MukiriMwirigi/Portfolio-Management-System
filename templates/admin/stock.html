@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block pageTitle %}Stock - Inventory Management System{% endblock  %}
+
+{% block cssLinks %}{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Inventory</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Entry Data</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for stock in all_stock %}
+                  <tr>
+                    <th scope="row">{{ stock.id }}</th>
+                    <td>{{ stock.inventory.name }}</td>
+                    <td>{{ stock.quantity }}</td>
+                    <td>{{ stock.created_at.strftime("%d-%m-%Y") }}</td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block jsLinks %}{% endblock %}

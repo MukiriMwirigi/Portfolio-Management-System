@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% block pageTitle %}Dashboard - Inventory Management System{% endblock  %}
+
+{% block cssLinks %}{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+      <div class="col-lg-4 col-md-4 col-sm-12 d-flex justify-content-center " >
+          <div class="card text-white bg-success  mb-3" style="width: 100%;">
+              <div class="card-header">Inventories</div>
+              <div class="card-body">
+                <p class="card-text">{{ ti }}</p>
+              </div>
+          </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12 d-flex justify-content-center">
+          <div class="card text-white bg-success mb-3" style="width: 100%;">
+              <div class="card-header">Categories</div>
+              <div class="card-body">
+                
+                <p class="card-text">
+                  2
+                </p>
+              </div>
+          </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12 d-flex justify-content-center">
+          <div class="card text-white bg-success mb-3" style="width: 100%;">
+              <div class="card-header">Users</div>
+              <div class="card-body">
+                
+                <p class="card-text">4</p>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div class="row mt-3">
+      <div class="col-lg-6">
+        <canvas id="bar-chart" width="450" height="450"></canvas>
+      </div>
+      <div class="col-lg-6">
+        <canvas class="" id="pie-chart" width="150" height="150"></canvas>
+      </div>  
+  </div>
+</div>
+
+{% endblock %}
+
+
+{% block jsLinks %}
+<!-- chart js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+
+<script>
+  // Bar chart
+  new Chart(document.getElementById("bar-chart"), {
+    type: 'bar',
+    data: {
+      labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
+      datasets: [
+        {
+          label: "Population (millions)",
+          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+          data: [2478,5267,734,784,433]
+        }
+      ]
+    },
+    options: {
+      legend: { display: false },
+      title: {
+        display: true,
+        text: 'Predicted world population (millions) in 2050'
+      }
+    }
+  });
+</script>
+
+<script>
+  new Chart(document.getElementById("pie-chart"), {
+      type: 'pie',
+      data: {
+        labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
+        datasets: [{
+          label: "Population (millions)",
+          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+          data: [2478,5267,734,784,433]
+        }]
+      },
+      options: {
+        title: {
+          display: true,
+          text: 'Predicted world population (millions) in 2050'
+        }
+      }
+  });
+</script>
+
+
+
+
+{% endblock %}

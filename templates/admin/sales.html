@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block pageTitle %}Sales - Inventory Management System{% endblock  %}
+
+{% block cssLinks %}{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Inventory</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Revenue</th>
+                    <th scope="col">Profit</th>
+                    <th scope="col">Loss</th>
+                    <th scope="col">Entry Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for sale in all_sales %}
+                  <tr>
+                    <th scope="row">{{ sale.id }}</th>
+                    <td>{{ sale.inventory.name }}</td>
+                    <td>{{ sale.quantity }}</td>
+                    <td>{{ sale.revenue }}</td>
+                    <td>{{ sale.profit }}</td>
+                    <td>{{ sale.loss }}</td>
+                    <td>{{ sale.created_at.strftime("%d-%m-%Y") }}</td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block jsLinks %}{% endblock %}

@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from configs.configurations import Development, Testing, Production
 
 
-app = Flask(__name__, static_folder='\z\static')
+app = Flask(__name__)
 #app.config.from_object(Development)
 db = SQLAlchemy(app)
 

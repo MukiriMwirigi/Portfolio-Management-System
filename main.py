@@ -5,7 +5,7 @@ from configs.configurations import Development, Testing, Production
 
 
 app = Flask(__name__)
-#app.config.from_object(Development)
+app.config.from_object(Development)
 db = SQLAlchemy(app)
 
 # models

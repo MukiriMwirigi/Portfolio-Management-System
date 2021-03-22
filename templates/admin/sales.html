@@ -27,7 +27,7 @@
                     <th scope="row">{{ sale.id }}</th>
                     <td>{{ sale.inventory.name }}</td>
                     <td>{{ sale.quantity }}</td>
-                    <td>{{ sale.revenue }}</td>
+                    <td>{{ compute_revenue(inv.id) }}</td>
                     <td>{{ sale.profit }}</td>
                     <td>{{ sale.loss }}</td>
                     <td>{{ sale.created_at.strftime("%d-%m-%Y") }}</td>

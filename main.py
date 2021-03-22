@@ -42,21 +42,13 @@ def utility_processor():
     return dict(compute_quanity=compute_quanity)
 
 def utility_processor():
-    def compute_revenue(salesID: int):
-        sal = Sales.get_sales_byID(id=salesID)
+    def compute_revenue(inventoryID: int):
         if sales is not None:
-            total_sales = list(map(lambda obj:revenue, inv.sales))
+            total_sales = list(map(lambda obj:revenue, inv.Sales))
             return (total_sales * sp)
             
     return dict(compute_revenue=compute_revenue)
 
-"""
-def utility_processor():
-    def compute_profits(salesID: int):
-        sal = Sales.get_sales_byID(id=salesID)
-        if sales is not None:
-            total
-"""
 
 @app.route('/')
 def index():

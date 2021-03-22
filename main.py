@@ -42,9 +42,9 @@ def utility_processor():
     return dict(compute_quanity=compute_quanity)
 
 def utility_processor():
-    def compute_revenue(inventoryID: int):
-        inv = Inventory.get_inventory_byID(id=inventoryID)
-        if inv is not None:
+    def compute_revenue(salesID: int):
+        sal = Sales.get_sales_byID(id=salesID)
+        if sales is not None:
             total_sales = list(map(lambda obj:revenue, inv.sales))
             return (total_sales * sp)
             

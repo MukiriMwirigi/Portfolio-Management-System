@@ -26,7 +26,7 @@
                   <tr>
                     <th scope="row">{{ sale.id }}</th>
                     <td>{{ sale.inventory.name }}</td>
-                    <td>{{ sale.quantity }}</td>
+                    <td>{{ compute_quanity(inv.id) }}</td>
                     <td>{{ compute_revenue(inv.id) }}</td>
                     <td>{{ sale.profit }}</td>
                     <td>{{ sale.loss }}</td>

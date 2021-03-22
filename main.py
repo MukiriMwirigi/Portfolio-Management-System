@@ -49,6 +49,22 @@ def utility_processor():
             
     return dict(compute_revenue=compute_revenue)
 
+def utility_processor():
+    def compute_profit(inventoryID: int):
+        if sales is not None:
+            total_sales = list(map(lambda obj:revenue, inv.Sales))
+            return(compute_revenue-(total_sales*bp))
+
+    return dict(compute_profit=compute_profit)
+
+def utility_processor():
+    def compute_loss(inventoryID: int):
+        if sales is not None:
+            total_sales = list(map(lambda obj:revenue, inv.Sales))
+            return(compute_revenue-(total_sales*bp))
+
+    return dict(compute_loss=compute_loss)
+
 
 @app.route('/')
 def index():
@@ -119,26 +135,9 @@ def stock():
 def sales():
     all_sales = Sales.fetch_all()
     return render_template('admin/sales.html', all_sales=all_sales)
+
+
 """
-@app.route("/sales/<int:inv_id>/quantity", methods=['POST'])
-def restock(inv_id):
-    if request.method == 'POST':
-        qty = request.form['qty']
-        
-        r = Stock(quantity=qty,inventoryId=inv_id)
-        r.create_record()
-        flash("New stock successfully added", "success")
-
-        return redirect(url_for('inventories'))
-
-@app.route('/sales/<int:inv_id>/profit', methods=['POST'])
-def profit():
-    total_inventories = len(Inventory.fetch_all())
-
-    return render_template('admin/sales.html', ti=total_inventories)
-
-
-
 if __name__ == '__main__':
     app.jinja_env.auto_reload = True
     app.config['TEMPLATES_AUTO_RELOAD'] = True

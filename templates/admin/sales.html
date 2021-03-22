@@ -28,8 +28,12 @@
                     <td>{{ sale.inventory.name }}</td>
                     <td>{{ compute_quanity(inv.id) }}</td>
                     <td>{{ compute_revenue(inv.id) }}</td>
-                    <td>{{ sale.profit }}</td>
-                    <td>{{ sale.loss }}</td>
+                    {% if compute_profit(inv.id) >= 0 %}
+                    <td>{{ compute_profit(inv.id) }}</td>
+                    {% else %}
+                    <td>{{ compute_loss(inv.id) }}</td>
+                    {% endif %}
+                    <!--td>{{ compute_loss(inv.id) }}</td-->
                     <td>{{ sale.created_at.strftime("%d-%m-%Y") }}</td>
                   </tr>
                 {% endfor %}

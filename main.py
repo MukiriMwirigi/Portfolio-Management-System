@@ -50,6 +50,13 @@ def utility_processor():
             
     return dict(compute_revenue=compute_revenue)
 
+"""
+def utility_processor():
+    def compute_profits(salesID: int):
+        sal = Sales.get_sales_byID(id=salesID)
+        if sales is not None:
+            total
+"""
 
 @app.route('/')
 def index():

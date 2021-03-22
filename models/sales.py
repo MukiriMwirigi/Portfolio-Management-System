@@ -5,9 +5,9 @@ class Sales(db.Model):
     __tablename__ = 'sales'
     id = db.Column(db.Integer, primary_key=True)
     quantity = db.Column(db.Integer, nullable=False)
-    revenue = db.Column(db.Integer, nullable=False)
-    profit = db.Column(db.Integer, nullable=False)
-    loss = db.Column(db.Integer, nullable=False)
+    revenue = db.Column(db.Integer, nullable=True)
+    profit = db.Column(db.Integer, nullable=True)
+    loss = db.Column(db.Integer, nullable=True)
     created_at = db.Column(db.DateTime(timezone=True), default=func.now())
     inventoryId = db.Column(db.Integer, db.ForeignKey('inventories.id'), nullable=False)
 

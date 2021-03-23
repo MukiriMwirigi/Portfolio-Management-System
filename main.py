@@ -41,6 +41,7 @@ def utility_processor():
             
     return dict(compute_quanity=compute_quanity)
 
+@app.context_processor
 def utility_processor():
     def compute_revenue(inventoryID: int):
         if sales is not None:
@@ -49,6 +50,7 @@ def utility_processor():
             
     return dict(compute_revenue=compute_revenue)
 
+@app.context_processor
 def utility_processor():
     def compute_profit(inventoryID: int):
         if sales is not None:
@@ -57,6 +59,7 @@ def utility_processor():
 
     return dict(compute_profit=compute_profit)
 
+@app.context_processor
 def utility_processor():
     def compute_loss(inventoryID: int):
         if sales is not None:

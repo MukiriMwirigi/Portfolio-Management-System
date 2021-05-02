@@ -46,3 +46,4 @@ class Inventory(db.Model):
             return record
         return record
        
+    

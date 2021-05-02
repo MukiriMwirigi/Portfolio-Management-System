@@ -1,0 +1,24 @@
+{% extends 'base2.html' %}
+
+{% block pageTitle %}Loan Status - Inventory Management System {% endblock %}
+
+{% block cssLinks %}{% endblock %}
+
+{% block content %}
+<form action="{{ url_for('predict') }}" method="POST">
+    <input type="text" name="Gender" placeholder="Gender" required="required">
+    <input type="text" name="Married" placeholder="Married" required="required">
+    <input type="text" name="Education" placeholder="Education" required="required">
+    <input type="text" name="SelfEmployed" placeholder="Self Employed" required="required">
+    <input type="text" name="ApplicantIncome" placeholder="Applicant Income" required="required">
+    <input type="text" name="CoapplicantIncome" placeholder="Coapplicant Income" required="required">
+    <input type="text" name="LoanAmount" placeholder="Loan Amount" required="required">
+    <input type="text" name="LoanAmountTerm" placeholder="Loan Amount Term" required="required">
+    <input type="text" name="PropertyArea" placeholder="Property Area" required="required">
+    <input type="text" name="CreditHistory" placeholder="Credit History" required="required">
+
+</form>
+
+  {% endblock %}
+
+  {% block jsLinks %} {% endblock %}

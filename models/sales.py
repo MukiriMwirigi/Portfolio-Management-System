@@ -19,6 +19,17 @@ class Sales(db.Model):
     def fetch_all(cls):
         return cls.query.all()
 
+   
+    def compute_quanity(salesID: int):
+        if inv is not None:
+            # get the the stock quanity
+            total_stock = list(map(lambda obj: obj.quantity, inv.stock))
+            total_sales = list(map(lambda obj: obj.quantity, inv.Sales))
+            return sum(total_stock) - sum(total_sales)
+            
+    return dict(compute_quanity=compute_quanity)
+
+
 """
     def add_column(database_name:str, table_name:str, column:int, default=None):
         ret = False

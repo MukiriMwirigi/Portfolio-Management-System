@@ -40,7 +40,7 @@ def utility_processor():
             return sum(total_stock) - sum(total_sales)
             
     return dict(compute_quanity=compute_quanity)
-
+"""
 @app.context_processor
 def utility_processor():
     def compute_revenue(inventoryID: int):
@@ -68,16 +68,18 @@ def utility_processor():
 
     return dict(compute_loss=compute_loss)
 
-
+"""
 @app.route('/')
 def index():
     return render_template('/landing/index.html')
+
 
 @app.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():
     total_inventories = len(Inventory.fetch_all())
 
     return render_template('/admin/dashboard.html', ti=total_inventories)
+
 
 @app.route('/inventories', methods=['GET', 'POST'])
 def inventories():

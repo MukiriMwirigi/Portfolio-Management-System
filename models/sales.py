@@ -27,7 +27,7 @@ class Sales(db.Model):
             total_sales = list(map(lambda obj: obj.quantity, inv.Sales))
             return sum(total_stock) - sum(total_sales)
             
-    return dict(compute_quanity=compute_quanity)
+            return dict(compute_quanity=compute_quanity)
 
 
 """

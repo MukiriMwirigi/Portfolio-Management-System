@@ -1,12 +1,14 @@
+import numpy
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 # configs
 from configs.configurations import Development, Testing, Production
-
+import pickle
 
 app = Flask(__name__)
 app.config.from_object(Development)
 db = SQLAlchemy(app)
+model = pickle.load(open('model.pkl', 'rb'))
 
 # models
 from models.inventory import Inventory
@@ -94,11 +96,6 @@ def predict():
     output = round(prediction[0], 2)
 
     return render_template('mlmodel', prediction_text='Loan status {}'.format(output))
-
-
-    
-
-
 
 
 @app.route('/inventories', methods=['GET', 'POST'])

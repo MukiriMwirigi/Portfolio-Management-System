@@ -5,51 +5,57 @@
 {% block cssLinks %}{% endblock %}
 
 {% block content %}
+
+    <h2>Loan Prediction</h2>
+
     <form action="{{ url_for('predict') }}" method="POST">
         <label for="gender">Gender:</label>
         <select id="gender" name="gender">
             <option value="male">Male</option>
             <option value="female">Female</option>
-        </select>
+        </select><br>
 
         <label for="marriage">Married:</label>
         <select id="marriage" name="marriage">
             <option value="yes">Yes</option>
-            <option value="no">Not</option>
-        </select>
+            <option value="no">No</option>
+        </select><br>
 
         <label for="education">Education:</label>
         <select id="education" name="education">
             <option value="graduate">Graduate</option>
-            <option value="not">Not</option>
-        </select>
+            <option value="notgraduate">Not Graduate</option>
+        </select><br>
 
         <label for="selfemployed">Self Employed:</label>
         <select id="selfemployed" name="selfemployed">
             <option value="yes">Yes</option>
             <option value="no">No</option>
-        </select>
+        </select><br>
+
+        <label for="dependents">Dependents:</label>
+        <input type="number" id="dependents" required="required"><br>
 
         <label for="applicantincome">Applicant Income:</label>
-        <input type="number" id="applicantincome" required="required">
+        <input type="number" id="applicantincome" required="required"><br>
 
         <label for="coapplicantincome">Coapplicant Income:</label>
-        <input type="number" id="coapplicantincome" required="required">
+        <input type="number" id="coapplicantincome" required="required"><br>
 
         <label for="loanamount">Loan Amount:</label>
-        <input type="number" id="loanamount" required="required">
+        <input type="number" id="loanamount" required="required"><br>
 
-        <label for="loanamountterm">Loan Amount Term (360):</label>
-        <input type="number" id="loanamountterm" required="required">
+        <label for="loanamountterm">Loan Amount Term (180, 240, 360):</label>
+        <input type="number" id="loanamountterm" required="required"><br>
 
         <label for="propertyarea">Property Area:</label>
         <select id="propertyarea" name="propertyarea">
             <option value="rural">Rural</option>
             <option value="urban">Urban</option>
-        </select>
+        </select><br>
         
         <label for="creditHistory">Credit history (0 or 1):</label>
-        <input type="number" id="creditHistory" min="1" max="5" required="required">
+        <input type="number" id="creditHistory" min="1" max="5" required="required"><br>
         
         <button type="submit" class="btn btn-primary btn-block btn-large">Predict Loan Status</button>
     </form>

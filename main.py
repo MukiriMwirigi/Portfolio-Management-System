@@ -81,7 +81,7 @@ def dashboard():
     return render_template('/admin/dashboard.html', ti=total_inventories)
 
 
-@app.route('/')
+@app.route('/mlmodel')
 def mlmodel():
     return render_template('/landing/mlmodel.html')
 

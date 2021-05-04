@@ -81,10 +81,24 @@ def dashboard():
     return render_template('/admin/dashboard.html', ti=total_inventories)
 
 
-@app.route('/mlmodel', methods=['GET', 'POST'])
+@app.route('/')
 def mlmodel():
-    
     return render_template('/landing/mlmodel.html')
+
+@app.route('/predict', methods=['POST'])
+def predict():
+    int_features = [int(x) for x in request.form.values()]
+    final_features = [np.array(int_features)]
+    prediction = model.predict(final_features)
+
+    output = round(prediction[0], 2)
+
+    return render_template('mlmodel', prediction_text='Loan status {}'.format(output))
+
+
+    
+
+
 
 
 @app.route('/inventories', methods=['GET', 'POST'])

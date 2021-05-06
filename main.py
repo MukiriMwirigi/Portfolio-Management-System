@@ -1,6 +1,6 @@
 import sklearn 
 import numpy as np
-from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, requests
 from flask_sqlalchemy import SQLAlchemy
 # configs
 from configs.configurations import Development, Testing, Production
@@ -90,19 +90,27 @@ def mlmodel():
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    data = request.get_json(force=True)
-    prediction = model.predict([[np.array(data['exp'])]])
-    output = prediction [0]
-    return jsonify(output)
-    """
-    int_features = [int(str(x) for x in request.form.values())]
+    # Rendering results on HTML GUI
+    
+    int_features = [int(x) for x in request.form.values()]
     final_features = [np.array(int_features)]
     prediction = model.predict(final_features)
 
     output = round(prediction[0], 2)
 
     return render_template('mlmodel', prediction_text='Loan status {}'.format(output))
-"""
+
+
+@app.route('/predict_api', methods=['POST'])
+def predict_api():
+    
+    #For direct API calls throughout request
+    
+    data = request.get_json(force=True)
+    prediction = model.predict([np.array(list(data.values()))])
+    
+    output = prediction [0]
+    return jsonify(output)
 
 @app.route('/inventories', methods=['GET', 'POST'])
 def inventories():

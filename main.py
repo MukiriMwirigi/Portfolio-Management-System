@@ -92,7 +92,7 @@ def mlmodel():
     return render_template('/landing/mlmodel.html')
 
 @app.route('/pred', methods=['POST'])
-def predict():
+def pred():
     # Rendering results on HTML GUI
     def convert():
         Gender = request.form['Gender']
@@ -133,27 +133,25 @@ def predict():
         Credit_History = request.form['Credit_History']
 
 
-    final_features= [np.array(Gender, Married, Dependents, Education, Self_Employed, ApplicantIncome, CoapplicantIncome, LoanAmount, Loan_Amount_Term, Credit_History, Property_Area)]
+    new_features= [np.array(Gender, Married, Dependents, Education, Self_Employed, ApplicantIncome, CoapplicantIncome, LoanAmount, Loan_Amount_Term, Credit_History, Property_Area)]
     
-    prediction = model1.predict(final_features)
+    pred = model1.predict(new_features)
 
-    output = round(prediction[0], 2)
+    output = round(pred[0], 2)
 
     return render_template('/landing/mlmodel.html', prediction_text='Loan_Status {}'.format(output))
 
 
 @app.route('/pred_api', methods=['POST'])
-def predict_api():
+def pred_api():
     
     #For direct API calls throughout request
     
     data = request.get_json(force=True)
-    prediction = model1.predict([np.array(list(data.values()))])
+    pred = model1.predict([np.array(list(data.values()))])
     
-    output = prediction [0]
+    output = pred [0]
     return jsonify(output)
-
-
 
 
 @app.route('/salary')

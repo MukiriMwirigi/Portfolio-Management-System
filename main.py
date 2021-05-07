@@ -107,7 +107,7 @@ def predict():
 
     output = round(prediction[0], 2)
 
-    return render_template('salary.html', prediction_text='Salary {}'.format(output))
+    return render_template('/landing/salary.html', prediction_text='Salary {}'.format(output))
 
 
 @app.route('/predict_api', methods=['POST'])

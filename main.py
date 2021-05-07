@@ -10,7 +10,7 @@ import pickle
 app = Flask(__name__)
 app.config.from_object(Development)
 db = SQLAlchemy(app)
-#model = pickle.load(open('model.pkl', 'rb'))
+model1 = pickle.load(open('model.pkl', 'rb'))
 model = pickle.load(open('mod.pkl', 'rb'))
 le_loaded = pickle.load(open("le.obj", "rb"))
 
@@ -90,6 +90,71 @@ def dashboard():
 @app.route('/mlmodel')
 def mlmodel():
     return render_template('/landing/mlmodel.html')
+
+@app.route('/pred', methods=['POST'])
+def predict():
+    # Rendering results on HTML GUI
+    def convert():
+        Gender = request.form['Gender']
+        if Gender == 'Male':
+            return 0
+        else:
+            return 1
+        
+        Married = request.form['Married']
+        if Married == 'Yes':
+            return 0
+        else:
+            return 1
+
+        Education = request.form['Education']
+        if Education == 'Graduate':
+            return 0
+        else:
+            return 1
+
+        Self_Employed = request.form['Self_Employed']
+        if Self_Employed == 'Yes':
+            return 0
+        else:
+            return 1
+
+        Property_Area = request.form['Property_Area']
+        if Property_Area == 'Urban':
+            return 0
+        else:
+            return 1
+
+        Dependents = request.form['Dependents']
+        ApplicantIncome = request.form['ApplicantIncome']
+        CoapplicantIncome = request.form['CoapplicantIncome']
+        LoanAmount = request.form['LoanAmount']
+        Loan_Amount_Term = request.form['Loan_Amount_Term']
+        Credit_History = request.form['Credit_History']
+
+
+    final_features= [np.array(Gender, Married, Dependents, Education, Self_Employed, ApplicantIncome, CoapplicantIncome, LoanAmount, Loan_Amount_Term, Credit_History, Property_Area)]
+    
+    prediction = model1.predict(final_features)
+
+    output = round(prediction[0], 2)
+
+    return render_template('/landing/mlmodel.html', prediction_text='Loan_Status {}'.format(output))
+
+
+@app.route('/pred_api', methods=['POST'])
+def predict_api():
+    
+    #For direct API calls throughout request
+    
+    data = request.get_json(force=True)
+    prediction = model1.predict([np.array(list(data.values()))])
+    
+    output = prediction [0]
+    return jsonify(output)
+
+
+
 
 @app.route('/salary')
 def salary():

@@ -9,7 +9,9 @@ import pickle
 app = Flask(__name__)
 app.config.from_object(Development)
 db = SQLAlchemy(app)
-model = pickle.load(open('model.pkl', 'rb'))
+#model = pickle.load(open('model.pkl', 'rb'))
+model = pickle.load(open('mod.pkl', 'rb'))
+le_loaded = pickle.load(open("le.obj", "rb"))
 
 # models
 from models.inventory import Inventory
@@ -88,17 +90,23 @@ def dashboard():
 def mlmodel():
     return render_template('/landing/mlmodel.html')
 
+@app.route('/salary')
+def salary():
+    return render_template('/landing/salary.html')
+
 @app.route('/predict', methods=['POST'])
 def predict():
     # Rendering results on HTML GUI
-    
+
     int_features = [int(x) for x in request.form.values()]
-    final_features = [np.array(int_features)]
+    final_features= [np.array(int_features)]
+    
+    
     prediction = model.predict(final_features)
 
     output = round(prediction[0], 2)
 
-    return render_template('mlmodel', prediction_text='Loan status {}'.format(output))
+    return render_template('salary.html', prediction_text='Salary {}'.format(output))
 
 
 @app.route('/predict_api', methods=['POST'])

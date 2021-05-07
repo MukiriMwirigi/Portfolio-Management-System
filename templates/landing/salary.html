@@ -1,0 +1,27 @@
+{% extends 'base2.html' %}
+
+{% block pageTitle %}Salary Predict - Inventory Management System {% endblock %}
+
+{% block cssLinks %}{% endblock %}
+
+{% block content %}
+
+    <h2>Salary Prediction</h2>
+    <form action="{{ url_for('predict')}}"method="post">
+    	<input type="text" name="experience" placeholder="Experience" required="required" />
+        <input type="text" name="test_score" placeholder="Test Score" required="required" />
+		<input type="text" name="interview_score" placeholder="Interview Score" required="required" />
+
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+
+   <br>
+   <br>
+   {{ prediction_text }}
+
+   
+
+
+  {% endblock %}
+
+  {% block jsLinks %} {% endblock %}

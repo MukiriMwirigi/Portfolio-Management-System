@@ -1,6 +1,7 @@
 import sklearn 
 import numpy as np
-from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, requests
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
+import requests
 from flask_sqlalchemy import SQLAlchemy
 # configs
 from configs.configurations import Development, Testing, Production

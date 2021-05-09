@@ -130,11 +130,11 @@ def pred():
             return 1
 
     Dependents = request.form.get('Dependents')
-    ApplicantIncome = request.form['ApplicantIncome']
-    CoapplicantIncome = request.form['CoapplicantIncome']
-    LoanAmount = request.form['LoanAmount']
-    Loan_Amount_Term = request.form['Loan_Amount_Term']
-    Credit_History = request.form['Credit_History']
+    ApplicantIncome = request.form.get('ApplicantIncome')
+    CoapplicantIncome = request.form.get('CoapplicantIncome')
+    LoanAmount = request.form.get('LoanAmount')
+    Loan_Amount_Term = request.form.get('Loan_Amount_Term')
+    Credit_History = request.form.get('Credit_History')
 
 
     new_features= [np.array(con1, con2, Dependents, con3, con4, ApplicantIncome, CoapplicantIncome, LoanAmount, Loan_Amount_Term, Credit_History, con5)]

@@ -100,31 +100,31 @@ def pred():
         Gender = request.form['Gender']
         if Gender == 'Male':
             new_array = new_array + [1,0]
-        else:
+        elif Gender == 'Female':
             new_array == new_array + [0,1]
     
         Married = request.form['Married']
         if Married == 'Yes':
             new_array = new_array + [1,0]
-        else:
+        elif Married == 'No':
             new_array = new_array + [0,1]
     
         Education = request.form['Education']
         if Education == 'Graduate':
             new_array = new_array + [1,0]
-        else:
+        elif Education == "Not Graduate":
             new_array = new_array + [0,1]
         
         Self_Employed = request.form['Self_Employed']
         if Self_Employed == 'Yes':
             new_array = new_array + [1,0]
-        else:
+        elif Self_Employed == 'No':
             new_array = new_array + [0,1]
 
         Property_Area = request.form['Property_Area']
-        if Property_Area == 'Urban':
+        if Property_Area == 'Rural':
             new_array = new_array + [1,0]
-        else:
+        elif Property_Area == 'Urban':
             new_array = new_array + [0,1]
             
         Dependents = request.form.get('Dependents')

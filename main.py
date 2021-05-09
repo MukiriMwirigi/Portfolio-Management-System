@@ -92,7 +92,7 @@ def mlmodel():
     return render_template('/landing/mlmodel.html')
 
 @app.route('/pred', methods=['POST'])
-def pred(self):
+def pred():
     # Rendering results on HTML GUI
     def con1():
         Gender = request.form['Gender']

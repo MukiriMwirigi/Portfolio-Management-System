@@ -92,7 +92,7 @@ def mlmodel():
     return render_template('/landing/mlmodel.html')
 
 @app.route('/pred', methods=['POST'])
-def pred():
+def pred(self):
     # Rendering results on HTML GUI
     def con1():
         Gender = request.form['Gender']
@@ -137,8 +137,8 @@ def pred():
     Credit_History = request.form.get('Credit_History')
 
 
-    new_features= [np.array(con1, con2, Dependents, con3, con4, ApplicantIncome, CoapplicantIncome, LoanAmount, Loan_Amount_Term, Credit_History, con5)]
-    
+    new_features= np.array([con1, con2, Dependents, con3, con4, ApplicantIncome, CoapplicantIncome, LoanAmount, Loan_Amount_Term, Credit_History, con5])
+
     pred = model1.predict(new_features)
 
     output = round(pred[0], 2)

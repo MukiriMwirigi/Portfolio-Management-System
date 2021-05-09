@@ -129,7 +129,7 @@ def pred():
         else:
             return 1
 
-    Dependents = request.form['Dependents']
+    Dependents = request.form.get['Dependents']
     ApplicantIncome = request.form['ApplicantIncome']
     CoapplicantIncome = request.form['CoapplicantIncome']
     LoanAmount = request.form['LoanAmount']

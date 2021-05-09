@@ -101,12 +101,16 @@ def pred():
         else:
             return 1
     
+    Gender1 = int(con1)
+    
     def con2():
         Married = request.form['Married']
         if Married == 'Yes':
             return 0
         else:
             return 1
+
+    Married1 = int(con2)
 
     def con3():
         Education = request.form['Education']
@@ -115,6 +119,8 @@ def pred():
         else:
             return 1
 
+    Education1 = int(con3)
+
     def con4():
         Self_Employed = request.form['Self_Employed']
         if Self_Employed == 'Yes':
@@ -122,12 +128,16 @@ def pred():
         else:
             return 1
 
+    Self_Employed1 = int(con4)
+
     def con5():
         Property_Area = request.form['Property_Area']
         if Property_Area == 'Urban':
             return 0
         else:
             return 1
+
+    Property_Area1 = int(con5)
 
     Dependents = request.form.get('Dependents')
     ApplicantIncome = request.form.get('ApplicantIncome')
@@ -137,7 +147,7 @@ def pred():
     Credit_History = request.form.get('Credit_History')
 
 
-    new_features= np.array([con1, con2, Dependents, con3, con4, ApplicantIncome, CoapplicantIncome, LoanAmount, Loan_Amount_Term, Credit_History, con5])
+    new_features= np.array([Gender1, Married1, Dependents, Education1, Self_Employed1 , ApplicantIncome, CoapplicantIncome, LoanAmount, Loan_Amount_Term, Credit_History, Property_Area1])
 
     pred = model1.predict(new_features)
 

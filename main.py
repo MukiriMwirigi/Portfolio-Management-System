@@ -101,7 +101,6 @@ def pred():
         else:
             return 1
     
-    Gender1 = int(con1)
     
     def con2():
         Married = request.form['Married']
@@ -110,7 +109,6 @@ def pred():
         else:
             return 1
 
-    Married1 = int(con2)
 
     def con3():
         Education = request.form['Education']
@@ -119,7 +117,6 @@ def pred():
         else:
             return 1
 
-    Education1 = int(con3)
 
     def con4():
         Self_Employed = request.form['Self_Employed']
@@ -128,7 +125,6 @@ def pred():
         else:
             return 1
 
-    Self_Employed1 = int(con4)
 
     def con5():
         Property_Area = request.form['Property_Area']
@@ -137,7 +133,6 @@ def pred():
         else:
             return 1
 
-    Property_Area1 = int(con5)
 
     Dependents = request.form.get('Dependents')
     ApplicantIncome = request.form.get('ApplicantIncome')

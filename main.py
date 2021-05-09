@@ -94,46 +94,50 @@ def mlmodel():
 @app.route('/pred', methods=['POST'])
 def pred():
     # Rendering results on HTML GUI
-    def convert():
+    def con1():
         Gender = request.form['Gender']
         if Gender == 'Male':
             return 0
         else:
             return 1
-        
+    
+    def con2():
         Married = request.form['Married']
         if Married == 'Yes':
             return 0
         else:
             return 1
 
+    def con3():
         Education = request.form['Education']
         if Education == 'Graduate':
             return 0
         else:
             return 1
 
+    def con4():
         Self_Employed = request.form['Self_Employed']
         if Self_Employed == 'Yes':
             return 0
         else:
             return 1
 
+    def con5():
         Property_Area = request.form['Property_Area']
         if Property_Area == 'Urban':
             return 0
         else:
             return 1
 
-        Dependents = request.form['Dependents']
-        ApplicantIncome = request.form['ApplicantIncome']
-        CoapplicantIncome = request.form['CoapplicantIncome']
-        LoanAmount = request.form['LoanAmount']
-        Loan_Amount_Term = request.form['Loan_Amount_Term']
-        Credit_History = request.form['Credit_History']
+    Dependents = request.form['Dependents']
+    ApplicantIncome = request.form['ApplicantIncome']
+    CoapplicantIncome = request.form['CoapplicantIncome']
+    LoanAmount = request.form['LoanAmount']
+    Loan_Amount_Term = request.form['Loan_Amount_Term']
+    Credit_History = request.form['Credit_History']
 
 
-    new_features= [np.array(Gender, Married, Dependents, Education, Self_Employed, ApplicantIncome, CoapplicantIncome, LoanAmount, Loan_Amount_Term, Credit_History, Property_Area)]
+    new_features= [np.array(con1, con2, Dependents, con3, con4, ApplicantIncome, CoapplicantIncome, LoanAmount, Loan_Amount_Term, Credit_History, con5)]
     
     pred = model1.predict(new_features)
 

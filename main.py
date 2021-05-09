@@ -97,25 +97,25 @@ def pred():
     new_array = list()
     if request.method == 'POST':
         
-        gender = request.form['Gender']
+        Gender = request.form['Gender']
         if Gender == 'Male':
             new_array = new_array + [1,0]
         else:
             new_array == new_array + [0,1]
     
-        married = request.form['Married']
+        Married = request.form['Married']
         if Married == 'Yes':
             new_array = new_array + [1,0]
         else:
             new_array = new_array + [0,1]
     
-        education = request.form['Education']
+        Education = request.form['Education']
         if Education == 'Graduate':
             new_array = new_array + [1,0]
         else:
             new_array = new_array + [0,1]
         
-        self_employed = request.form['Self_Employed']
+        Self_Employed = request.form['Self_Employed']
         if Self_Employed == 'Yes':
             new_array = new_array + [1,0]
         else:

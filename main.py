@@ -147,7 +147,7 @@ def pred():
     Credit_History = request.form.get('Credit_History')
 
 
-    new_features= np.array([Gender1, Married1, Dependents, Education1, Self_Employed1 , ApplicantIncome, CoapplicantIncome, LoanAmount, Loan_Amount_Term, Credit_History, Property_Area1])
+    new_features= np.array([Gender, Married, Dependents, Education, Self_Employed, ApplicantIncome, CoapplicantIncome, LoanAmount, Loan_Amount_Term, Credit_History, Property_Area])
 
     pred = model1.predict(new_features)
 

@@ -92,6 +92,70 @@ def mlmodel():
     return render_template('/landing/mlmodel.html')
 
 @app.route('/pred', methods=['POST'])
+def pred(Gender, Married, Education, Dependents, Self_Employed, Property_Area, ApplicantIncome, CoapplicantIncome, LoanAmount, Loan_Amount_Term, Credit_History):
+    if request.method == 'POST':
+        
+        Gender = request.form['Gender']
+        if Gender == 'Male':
+            Gender = 0
+        else:
+            Gender = 1
+    
+        Married = request.form['Married']
+        if Married == 'Yes':
+            Married = 0
+        else:
+            Married = 1
+    
+        Education = request.form['Education']
+        if Education == 'Graduate':
+            Graduate = 0
+        else:
+            Graduate = 1
+        
+        Self_Employed = request.form['Self_Employed']
+        if Self_Employed == 'Yes':
+            Self_Employed = 0
+        else:
+            Self_Employed = 1
+
+        Property_Area = request.form['Property_Area']
+        if Property_Area == 'Rural':
+            Property_Area = 0
+        else:
+            Property_Area = 1
+            
+        Dependents = int(request.form.get('Dependents'))
+        ApplicantIncome = int(request.form.get('ApplicantIncome'))
+        CoapplicantIncome = int(request.form.get('CoapplicantIncome'))
+        LoanAmount = int(request.form.get('LoanAmount'))
+        Loan_Amount_Term = int(request.form.get('Loan_Amount_Term'))
+        Credit_History = float(request.form.get('Credit_History'))
+        
+        new_array = [Gender, Married, Education, Self_Employed, Property_Area, Dependents, ApplicantIncome, CoapplicantIncome, LoanAmount, Loan_Amount_Term, Credit_History]
+        
+        data = np.array([new_array])
+        
+        pred = int(model1.predict(data))
+        
+        output = round(pred[0])
+        
+        return render_template('/landing/mlmodel.html', prediction_text='Loan_Status {}'.format(output))
+
+
+@app.route('/pred_api', methods=['POST'])
+def pred_api():
+    
+    #For direct API calls throughout request
+    
+    data = request.get_json(force=True)
+    pred = model1.predict([np.array(list(data.values()))])
+    
+    output = pred [0]
+    return jsonify(output)
+
+
+"""
 def pred():
     # Rendering results on HTML GUI
     new_array = list()
@@ -127,20 +191,20 @@ def pred():
         elif Property_Area == 'Urban':
             new_array = new_array + [0,1]
             
-        Dependents = request.form.get('Dependents')
-        ApplicantIncome = request.form.get('ApplicantIncome')
-        CoapplicantIncome = request.form.get('CoapplicantIncome')
-        LoanAmount = request.form.get('LoanAmount')
-        Loan_Amount_Term = request.form.get('Loan_Amount_Term')
-        Credit_History = request.form.get('Credit_History')
+        Dependents = int(request.form.get('Dependents'))
+        ApplicantIncome = int(request.form.get('ApplicantIncome'))
+        CoapplicantIncome = int(request.form.get('CoapplicantIncome'))
+        LoanAmount = int(request.form.get('LoanAmount'))
+        Loan_Amount_Term = int(request.form.get('Loan_Amount_Term'))
+        Credit_History = float(request.form.get('Credit_History'))
         
         new_array = new_array + [Dependents, ApplicantIncome, CoapplicantIncome, LoanAmount, Loan_Amount_Term, Credit_History]
         
         data = np.array([new_array])
         
-        pred = model1.predict(data)
+        pred = int(model1.predict(data))
         
-        output = round(pred[0], 2)
+        output = round(pred[0])
         
         return render_template('/landing/mlmodel.html', prediction_text='Loan_Status {}'.format(output))
 
@@ -155,6 +219,8 @@ def pred_api():
     
     output = pred [0]
     return jsonify(output)
+
+    """
 
 
 @app.route('/salary')

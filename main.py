@@ -135,7 +135,7 @@ def pred():
         new_array = [Gender, Married, Education, Self_Employed, Property_Area, Dependents, ApplicantIncome, CoapplicantIncome, LoanAmount, Loan_Amount_Term, Credit_History]
         
         data = np.array([new_array])
-        
+        np.where(data.values >= np.finfo(np.float64).max)
         pred = int(model1.predict(data))
         
         output = round(pred[0])

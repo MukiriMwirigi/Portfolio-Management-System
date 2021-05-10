@@ -109,9 +109,9 @@ def pred():
     
         Education = request.form['Education']
         if Education == 'Graduate':
-            Graduate = 0
+            Education = 0
         else:
-            Graduate = 1
+            Education = 1
         
         Self_Employed = request.form['Self_Employed']
         if Self_Employed == 'Yes':

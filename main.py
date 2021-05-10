@@ -92,7 +92,7 @@ def mlmodel():
     return render_template('/landing/mlmodel.html')
 
 @app.route('/pred', methods=['POST'])
-def pred(Gender, Married, Education, Dependents, Self_Employed, Property_Area, ApplicantIncome, CoapplicantIncome, LoanAmount, Loan_Amount_Term, Credit_History):
+def pred():
     if request.method == 'POST':
         
         Gender = request.form['Gender']

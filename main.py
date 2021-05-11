@@ -137,12 +137,12 @@ def pred():
         else:
             Property_Area = 0
          '''   
-        Dependents = int(request.form['Dependents'])
-        ApplicantIncome = float(request.form['ApplicantIncome'])
-        CoapplicantIncome = float(request.form['CoapplicantIncome'])
-        LoanAmount = float(request.form['LoanAmount'])
-        Loan_Amount_Term = int(request.form['Loan_Amount_Term'])
-        Credit_History = float(request.form['Credit_History'])
+        Dependents = int(request.form.get['Dependents'])
+        ApplicantIncome = float(request.form.get['ApplicantIncome'])
+        CoapplicantIncome = float(request.form.get['CoapplicantIncome'])
+        LoanAmount = float(request.form.get['LoanAmount'])
+        Loan_Amount_Term = int(request.form.get['Loan_Amount_Term'])
+        Credit_History = float(request.form.get['Credit_History'])
         
         """
         new_array = [Gender, Married, Education, Self_Employed, Property_Area, Dependents, ApplicantIncome, CoapplicantIncome, LoanAmount, Loan_Amount_Term, Credit_History]

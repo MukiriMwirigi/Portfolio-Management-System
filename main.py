@@ -177,8 +177,9 @@ def pred_api():
     
     #For direct API calls throughout request
     
-    data = request.get_json(force=True)
-    pred = model1.predict(data)
+    json_ = request.get_json(force=True)
+    query = pd.get_dummies(pd.DataFrame(json_))
+    pred = model1.predict(query)
     
     output = pred [0]
     return jsonify(output)

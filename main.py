@@ -1,3 +1,5 @@
+import pandas as pd
+from pandas.core.base import DataError
 import sklearn 
 import numpy as np
 from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
@@ -22,6 +24,11 @@ from models.sales import Sales
 # services
 from services.inventory import InventoryService
 
+Gender_to_int = {'Male':1, 'Female':0}
+Married_to_int = {'Yes':1, 'No':0}
+Education_to_int = {'Graduate':1, 'Not Graduate':0}
+Self_Employed_to_int = {'Yes':1, 'No':0}
+Property_Area_to_int = {'Urban':1, 'Rural':0}
 
 # error handlers
 @app.errorhandler(404)
@@ -96,50 +103,72 @@ def pred():
     if request.method == 'POST':
         
         Gender = request.form['Gender']
+        '''
         if Gender == 'Male':
-            Gender = 0
-        else:
             Gender = 1
-    
+        else:
+            Gender = 0
+    '''
         Married = request.form['Married']
+        '''
         if Married == 'Yes':
-            Married = 0
-        else:
             Married = 1
-    
-        Education = request.form['Education']
-        if Education == 'Graduate':
-            Education = 0
         else:
+            Married = 0
+    '''
+        Education = request.form['Education']
+        '''
+        if Education == 'Graduate':
             Education = 1
-        
+        else:
+            Education = 0
+        '''
         Self_Employed = request.form['Self_Employed']
+        '''
         if Self_Employed == 'Yes':
             Self_Employed = 0
         else:
             Self_Employed = 1
-
+'''
         Property_Area = request.form['Property_Area']
+        '''
         if Property_Area == 'Rural':
-            Property_Area = 0
-        else:
             Property_Area = 1
-            
-        Dependents = (request.form.get('Dependents'))
-        ApplicantIncome = (request.form.get('ApplicantIncome'))
-        CoapplicantIncome = (request.form.get('CoapplicantIncome'))
-        LoanAmount = (request.form.get('LoanAmount'))
-        Loan_Amount_Term = (request.form.get('Loan_Amount_Term'))
-        Credit_History = (request.form.get('Credit_History'))
+        else:
+            Property_Area = 0
+         '''   
+        Dependents = int(request.form['Dependents'])
+        ApplicantIncome = float(request.form['ApplicantIncome'])
+        CoapplicantIncome = float(request.form['CoapplicantIncome'])
+        LoanAmount = float(request.form['LoanAmount'])
+        Loan_Amount_Term = int(request.form['Loan_Amount_Term'])
+        Credit_History = float(request.form['Credit_History'])
         
+        """
         new_array = [Gender, Married, Education, Self_Employed, Property_Area, Dependents, ApplicantIncome, CoapplicantIncome, LoanAmount, Loan_Amount_Term, Credit_History]
         
         data = np.array([new_array])
-        np.where(data.values >= np.finfo(np.float64).max)
+        #np.where(data[] >= np.finfo(np.float64).max)
         pred = int(model1.predict(data))
         
         output = round(pred[0])
-        
+        """
+        data = pd.DataFrame(index=[1])
+        data['Gender'] = Gender_to_int[Gender]
+        data['Married'] = Married_to_int[Married]
+        data['Education'] = Education_to_int[Education]
+        data['Self_Employed'] = Self_Employed_to_int[Self_Employed]
+        data['Property_Area'] = Property_Area_to_int[Property_Area]
+        data['Dependents'] = Dependents 
+        data['ApplicantIncome'] = ApplicantIncome
+        data['CoapplicantIncome'] = CoapplicantIncome
+        data['LoanAmount'] = LoanAmount
+        data['Loan_Amount_Term'] = Loan_Amount_Term
+        data['Credit_History'] = Credit_History
+
+        pred = model1.predict(data)
+        output = round(pred[0])
+
         return render_template('/landing/mlmodel.html', prediction_text='Loan_Status {}'.format(output))
 
 
@@ -149,7 +178,7 @@ def pred_api():
     #For direct API calls throughout request
     
     data = request.get_json(force=True)
-    pred = model1.predict([np.array(list(data.values()))])
+    pred = model1.predict(data)
     
     output = pred [0]
     return jsonify(output)

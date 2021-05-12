@@ -12,7 +12,7 @@ import pickle
 app = Flask(__name__)
 app.config.from_object(Development)
 db = SQLAlchemy(app)
-model1 = pickle.load(open('model.pkl', 'rb'))
+model1 = pickle.load(open('mdl.pkl', 'rb'))
 model = pickle.load(open('mod.pkl', 'rb'))
 le_loaded = pickle.load(open("le.obj", "rb"))
 
@@ -103,40 +103,10 @@ def pred():
     if request.method == 'POST':
         
         Gender = request.form['Gender']
-        '''
-        if Gender == 'Male':
-            Gender = 1
-        else:
-            Gender = 0
-    '''
         Married = request.form['Married']
-        '''
-        if Married == 'Yes':
-            Married = 1
-        else:
-            Married = 0
-    '''
         Education = request.form['Education']
-        '''
-        if Education == 'Graduate':
-            Education = 1
-        else:
-            Education = 0
-        '''
         Self_Employed = request.form['Self_Employed']
-        '''
-        if Self_Employed == 'Yes':
-            Self_Employed = 0
-        else:
-            Self_Employed = 1
-'''
-        Property_Area = request.form['Property_Area']
-        '''
-        if Property_Area == 'Rural':
-            Property_Area = 1
-        else:
-            Property_Area = 0
-         '''   
+        Property_Area = request.form['Property_Area'] 
         Dependents = request.form.get('Dependents')
         ApplicantIncome = request.form.get('ApplicantIncome')
         CoapplicantIncome = request.form.get('CoapplicantIncome')
@@ -153,6 +123,8 @@ def pred():
         
         output = round(pred[0])
         """
+        feature_list=['Gender', 'Married', 'Education', 'Self_Employed', 'Property_Area', 'Dependents', 'ApplicantIncome', 'CoapplicantIncome', 'LoanAmount', 'Loan_Amount_Term', 'Credit_History']
+        
         data = pd.DataFrame(index=[1])
         data['Gender'] = Gender_to_int[Gender]
         data['Married'] = Married_to_int[Married]
@@ -165,15 +137,19 @@ def pred():
         data['LoanAmount'] = LoanAmount
         data['Loan_Amount_Term'] = Loan_Amount_Term
         data['Credit_History'] = Credit_History
-
-        data = data.fillna(lambda x: x.median())
-
+        
         pred = model1.predict(data)
+
+        if pred == 1:
+            return 'Loan Approved!'
+        else: 
+            return 'Loan Declined.'
+
         output = round(pred[0])
 
-        return render_template('/landing/mlmodel.html', prediction_text='Loan_Status {}'.format(output))
+        return render_template('/landing/mlmodel.html', pred_text='Loan_Status {}'.format(output))
 
-"""
+'''
 @app.route('/pred_api', methods=['POST'])
 def pred_api():
     
@@ -185,7 +161,8 @@ def pred_api():
     
     output = pred [0]
     return jsonify(output)
-"""
+ '''   
+
 
 """
 def pred():

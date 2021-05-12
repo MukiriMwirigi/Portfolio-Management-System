@@ -83,7 +83,13 @@
     </form>
     <br>
     <br>
-    {{ prediction_text }}
+    {{ pred_text }}
+    <br>
+    {% if pred == 1 %}
+    <p>Loan Approved:)</p>
+    {% else %}
+    <p>Loan Declined :( </p>
+    {% endif %}
 
 </div>
 

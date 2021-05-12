@@ -166,6 +166,8 @@ def pred():
         data['Loan_Amount_Term'] = Loan_Amount_Term
         data['Credit_History'] = Credit_History
 
+        data = data.fillna(lambda x: x.median())
+
         pred = model1.predict(data)
         output = round(pred[0])
 

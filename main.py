@@ -137,12 +137,12 @@ def pred():
         else:
             Property_Area = 0
          '''   
-        Dependents = request.form('Dependents')
-        ApplicantIncome = request.form('ApplicantIncome')
-        CoapplicantIncome = request.form('CoapplicantIncome')
-        LoanAmount = request.form('LoanAmount')
-        Loan_Amount_Term = request.form('Loan_Amount_Term')
-        Credit_History =  request.form('Credit_History')
+        Dependents = request.form['Dependents']
+        ApplicantIncome = request.form['ApplicantIncome']
+        CoapplicantIncome = request.form['CoapplicantIncome']
+        LoanAmount = request.form['LoanAmount']
+        Loan_Amount_Term = request.form['Loan_Amount_Term']
+        Credit_History =  request.form['Credit_History']
         
         """
         new_array = [Gender, Married, Education, Self_Employed, Property_Area, Dependents, ApplicantIncome, CoapplicantIncome, LoanAmount, Loan_Amount_Term, Credit_History]
@@ -171,19 +171,19 @@ def pred():
 
         return render_template('/landing/mlmodel.html', prediction_text='Loan_Status {}'.format(output))
 
-
+"""
 @app.route('/pred_api', methods=['POST'])
 def pred_api():
     
     #For direct API calls throughout request
-    
+    js= json.loads(data.decode("utf-8"))
     json_ = request.get_json(force=True)
     query = pd.get_dummies(pd.DataFrame(json_))
     pred = model1.predict(query)
     
     output = pred [0]
     return jsonify(output)
-
+"""
 
 """
 def pred():

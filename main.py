@@ -138,6 +138,12 @@ def pred():
         data['Loan_Amount_Term'] = Loan_Amount_Term
         data['Credit_History'] = Credit_History
         
+        for i in data:
+            if i == np.NaN :
+                data.fillna(inplace=True)
+            else:
+                return i 
+                
         pred = model1.predict(data)
 
         if pred == 1:

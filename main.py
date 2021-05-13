@@ -151,7 +151,8 @@ def pred():
         else: 
             return 'Loan Declined.'
 
-        output = round(pred[0], 0)
+        #output = round(pred[0], 0)
+        output = pred
 
         return render_template('/landing/mlmodel.html', pred_text='Loan_Status {}'.format(output))
 

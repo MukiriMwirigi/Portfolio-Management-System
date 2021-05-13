@@ -114,15 +114,6 @@ def pred():
         Loan_Amount_Term = request.form.get('Loan_Amount_Term')
         Credit_History =  request.form.get('Credit_History')
         
-        """
-        new_array = [Gender, Married, Education, Self_Employed, Property_Area, Dependents, ApplicantIncome, CoapplicantIncome, LoanAmount, Loan_Amount_Term, Credit_History]
-        
-        data = np.array([new_array])
-        #np.where(data[] >= np.finfo(np.float64).max)
-        pred = int(model1.predict(data))
-        
-        output = round(pred[0])
-        """
         feature_list=['Gender', 'Married', 'Education', 'Self_Employed', 'Property_Area', 'Dependents', 'ApplicantIncome', 'CoapplicantIncome', 'LoanAmount', 'Loan_Amount_Term', 'Credit_History']
         
         data = pd.DataFrame(index=[1])
@@ -147,9 +138,9 @@ def pred():
         pred = model1.predict(data)
 
         if pred == 1:
-            return 'Loan Approved!'
+            return 1
         else: 
-            return 'Loan Declined.'
+            return 0
 
         #output = round(pred[0], 0)
         output = pred
@@ -166,76 +157,7 @@ def pred_api():
     output = pred [0]
     return jsonify(output)
  
-
-
-"""
-def pred():
-    # Rendering results on HTML GUI
-    new_array = list()
-    if request.method == 'POST':
-        
-        Gender = request.form['Gender']
-        if Gender == 'Male':
-            new_array = new_array + [1,0]
-        elif Gender == 'Female':
-            new_array == new_array + [0,1]
-    
-        Married = request.form['Married']
-        if Married == 'Yes':
-            new_array = new_array + [1,0]
-        elif Married == 'No':
-            new_array = new_array + [0,1]
-    
-        Education = request.form['Education']
-        if Education == 'Graduate':
-            new_array = new_array + [1,0]
-        elif Education == "Not Graduate":
-            new_array = new_array + [0,1]
-        
-        Self_Employed = request.form['Self_Employed']
-        if Self_Employed == 'Yes':
-            new_array = new_array + [1,0]
-        elif Self_Employed == 'No':
-            new_array = new_array + [0,1]
-
-        Property_Area = request.form['Property_Area']
-        if Property_Area == 'Rural':
-            new_array = new_array + [1,0]
-        elif Property_Area == 'Urban':
-            new_array = new_array + [0,1]
-            
-        Dependents = int(request.form.get('Dependents'))
-        ApplicantIncome = int(request.form.get('ApplicantIncome'))
-        CoapplicantIncome = int(request.form.get('CoapplicantIncome'))
-        LoanAmount = int(request.form.get('LoanAmount'))
-        Loan_Amount_Term = int(request.form.get('Loan_Amount_Term'))
-        Credit_History = float(request.form.get('Credit_History'))
-        
-        new_array = new_array + [Dependents, ApplicantIncome, CoapplicantIncome, LoanAmount, Loan_Amount_Term, Credit_History]
-        
-        data = np.array([new_array])
-        
-        pred = int(model1.predict(data))
-        
-        output = round(pred[0])
-        
-        return render_template('/landing/mlmodel.html', prediction_text='Loan_Status {}'.format(output))
-
-
-@app.route('/pred_api', methods=['POST'])
-def pred_api():
-    
-    #For direct API calls throughout request
-    
-    data = request.get_json(force=True)
-    pred = model1.predict([np.array(list(data.values()))])
-    
-    output = pred [0]
-    return jsonify(output)
-
-    """
-
-
+######################################################################################################
 @app.route('/salary')
 def salary():
     return render_template('/landing/salary.html')
@@ -266,6 +188,7 @@ def predict_api():
     output = prediction [0]
     return jsonify(output)
 
+############################################################################################################
 @app.route('/inventories', methods=['GET', 'POST'])
 def inventories():
     return InventoryService.inventories()
@@ -312,14 +235,14 @@ def edit_inventory(inv_id):
         return redirect(url_for('inventories'))
 
 
-#################################################################
+#######################################################################################################
 """Stock"""
 @app.route('/stock')
 def stock():
     all_stock = Stock.fetch_all()
     return render_template('admin/stock.html', all_stock=all_stock)
 
-######################################################################
+############################################################################################################
 """Sales"""
 @app.route('/sales')
 def sales():

@@ -87,7 +87,7 @@
     <br>
     {% if pred == 1 %}
     <p>Loan Approved:)</p>
-    {% else %}
+    {% else pred != 1 %}
     <p>Loan Declined :( </p>
     {% endif %}
 

@@ -143,7 +143,7 @@ def pred():
                 data.fillna(inplace=True)
             else:
                 return i 
-                
+
         pred = model1.predict(data)
 
         if pred == 1:
@@ -155,19 +155,16 @@ def pred():
 
         return render_template('/landing/mlmodel.html', pred_text='Loan_Status {}'.format(output))
 
-'''
 @app.route('/pred_api', methods=['POST'])
 def pred_api():
     
     #For direct API calls throughout request
-    js= json.loads(data.decode("utf-8"))
-    json_ = request.get_json(force=True)
-    query = pd.get_dummies(pd.DataFrame(json_))
-    pred = model1.predict(query)
+    data = request.get_json(force=True)
+    pred = model1.predict(data)
     
     output = pred [0]
     return jsonify(output)
- '''   
+ 
 
 
 """
